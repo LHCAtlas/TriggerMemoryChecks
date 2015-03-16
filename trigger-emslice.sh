@@ -39,11 +39,10 @@ if [ ! -d "$test" ]; then
   get_files valgrindRTT.supp
   get_files Gaudi.supp
   get_files valgrind-python.supp
-
-else
-  # Get back into the directory
-  cd $test
 fi
+
+# Get back into the directory
+cd $test
 
 # Setup for the job to run
 cp ../$test-jobOptions.py jobOptions.py
