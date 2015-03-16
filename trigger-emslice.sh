@@ -22,6 +22,12 @@ source /afs/cern.ch/atlas/software/dist/AtlasSetup/scripts/asetup.sh ${release},
 # done up to now.
 test=ElectronSliceAthenaTrigRDO_MC
 if [ ! -d "$test" ]; then
+  echo ==============================
+  echo =
+  echo = Setup
+  echo =
+  echo ==============================
+  echo "Running trigtest to get everything configured"
   trigtest.pl --test $test --run $test --conf TriggerTest.conf
 
   # Get suppressions to try to clean up the valgrind file a little bit
@@ -46,6 +52,11 @@ cp ../$test-jobOptions.py jobOptions.py
 athena.py --config-only=valgrind.pkl jobOptions.py
 
 # finally run the valgrind job.
+echo ==============================
+echo =
+echo = valgrind
+echo =
+echo ==============================
 echo "Now going to run valgrind"
 valgrind --leak-check=full --trace-children=yes --num-callers=30 \
     --show-reachable=yes --track-origins=yes \
