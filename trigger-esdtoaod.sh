@@ -9,7 +9,10 @@ mydate=`date +"%m-%d-%Y"`
 
 mydesc=${release}.${nightly}.${mydate}.${events}
 
-export AtlasSetup=/afs/cern.ch/atlas/software/dist/AtlasSetup && source /afs/cern.ch/atlas/software/dist/AtlasSetup/scripts/asetup.sh ${release},${nightly},here,gcc48,64
+export AtlasSetup=/afs/cern.ch/atlas/software/dist/AtlasSetup
+ls -l /afs/cern.ch/atlas/software/dist/AtlasSetup/scripts/asetup.sh
+echo source /afs/cern.ch/atlas/software/dist/AtlasSetup/scripts/asetup.sh ${release},${nightly},here,gcc48,64
+source /afs/cern.ch/atlas/software/dist/AtlasSetup/scripts/asetup.sh ${release},${nightly},here,gcc48,64
 
 # Get suppressions to try to clean up the valgrind file a little bit
 # From http://acode-browser.usatlas.bnl.gov/lxr/source/atlas/Tools/ValgrindRTTJobs/scripts/valgrind_trf.py
