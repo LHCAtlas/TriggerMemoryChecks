@@ -38,3 +38,5 @@ Reco_tf.py --inputESDFile=myESD.pool.root --outputAODFile=myAOD.pool.root --maxE
 
 echo == - Valgrind
 valgrind --tool=memcheck --leak-check=full --suppressions=root.supp --suppressions=${ROOTSYS}/etc/valgrind-root.supp --suppressions=newSuppressions.supp --suppressions=oracleDB.supp --suppressions=valgrindRTT.supp --suppressions=Gaudi.supp --suppressions=valgrind-python.supp --num-callers=30 --track-origins=yes `which python` `which athena.py` rec.pkl >& valgrind.esdtoaod.${mydesc}.log
+
+gzip valgrind.esdtoaod.${mydesc}.log

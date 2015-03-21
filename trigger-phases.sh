@@ -33,6 +33,8 @@ Reco_tf.py --inputRDOFile=/afs/cern.ch/work/l/limosani/public/valid1.117050.Powh
 echo == - Valgrind Run
 valgrind --tool=memcheck --leak-check=full --suppressions=root.supp --suppressions=${ROOTSYS}/etc/valgrind-root.supp --suppressions=newSuppressions.supp --suppressions=oracleDB.supp --suppressions=valgrindRTT.supp --suppressions=Gaudi.supp --suppressions=valgrind-python.supp --num-callers=30 `which python` `which athena.py` rec.pkl >& valgrind.rdotoesd.${mydesc}.log
 
+gzip valgrind.rdotoesd.${mydesc}.log
+
 # ESD TO AOD STEP (with trigger)
 echo ==============================
 echo =
@@ -47,6 +49,8 @@ Reco_tf.py --inputESDFile=myESD.pool.root --outputAODFile=myAOD.pool.root --maxE
 
 echo == - Valgrind
 valgrind --tool=memcheck --leak-check=full --suppressions=root.supp --suppressions=${ROOTSYS}/etc/valgrind-root.supp --suppressions=newSuppressions.supp --suppressions=oracleDB.supp --suppressions=valgrindRTT.supp --suppressions=Gaudi.supp --suppressions=valgrind-python.supp --num-callers=30 --track-origins=yes `which python` `which athena.py` rec.pkl >& valgrind.esdtoaod.${mydesc}.log
+
+gzip valgrind.esdtoaod.${mydesc}.log
 
 # AOD TO HISTS STEP (NO TRIGGER)
 # disabled for now

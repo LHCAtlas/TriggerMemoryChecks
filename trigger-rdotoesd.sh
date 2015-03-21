@@ -32,3 +32,6 @@ Reco_tf.py --inputRDOFile=/afs/cern.ch/work/l/limosani/public/valid1.117050.Powh
 
 echo == - Valgrind Run
 valgrind --tool=memcheck --leak-check=full --suppressions=root.supp --suppressions=${ROOTSYS}/etc/valgrind-root.supp --suppressions=newSuppressions.supp --suppressions=oracleDB.supp --suppressions=valgrindRTT.supp --suppressions=Gaudi.supp --suppressions=valgrind-python.supp --num-callers=30 `which python` `which athena.py` rec.pkl >& valgrind.rdotoesd.${mydesc}.log
+
+gzip valgrind.rdotoesd.${mydesc}.log
+
