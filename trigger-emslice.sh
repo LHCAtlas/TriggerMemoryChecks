@@ -48,7 +48,7 @@ cd $test
 cp ../$test-jobOptions.py jobOptions.py
 
 # Make the pickle file...
-athena.py --config-only=valgrind.pkl jobOptions.py
+athena.py --config-only=valgrind.pkl --preInclude=RecExCommon/ValgrindTweaks.py --maxEvents=${events} jobOptions.py
 
 # finally run the valgrind job.
 echo ==============================

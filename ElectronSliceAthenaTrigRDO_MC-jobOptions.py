@@ -10,15 +10,13 @@ from AthenaCommon.AthenaCommonFlags import athenaCommonFlags as acf
 #from AthenaCommon.AthenaCommonFlags import athenaCommonFlags as acf
 #acf.FilesInput=["/afs/cern.ch/atlas/project/trigger/pesa-sw/validation/validation-data/mc10_7TeV.105001.pythia_minbias.digit.RDO.e574_s932_s946_d369/RDO.197112._000001.pool.root.1"]
 
-# Turn off PerfMon:
-rec.doPerfMon.set_Value_and_Lock( False )
-rec.doDetailedPerfMon.set_Value_and_Lock( False )
-rec.doSemiDetailedPerfMon.set_Value_and_Lock( False )
-from PerfMonComps.PerfMonFlags import jobproperties
-jobproperties.PerfMonFlags.doMonitoring.set_Value_and_Lock( False )
+# Turn off PerfMon (hopefully the fragment will set this up correctly).
+#rec.doPerfMon.set_Value_and_Lock( False )
+#rec.doDetailedPerfMon.set_Value_and_Lock( False )
+#rec.doSemiDetailedPerfMon.set_Value_and_Lock( False )
+#from PerfMonComps.PerfMonFlags import jobproperties
+#jobproperties.PerfMonFlags.doMonitoring.set_Value_and_Lock( False )
 
-if not acf.EvtMax.is_locked():
-    acf.EvtMax=25
 if not ('OutputLevel' in dir()):
     rec.OutputLevel=INFO
 #scan for RTT files (only if dsName and fileRange set)
