@@ -44,6 +44,6 @@ echo == - Config
 Reco_tf.py --inputESDFile=myESD.pool.root --outputAODFile=myAOD.pool.root --maxEvents=${events} --preInclude=RecExCommon/ValgrindTweaks.py --maxEvents=${events} --execOnly  --athenaopts='--config-only=rec.pkl --stdcmalloc' 
 
 echo == - Valgrind
-valgrind --tool=memcheck --leak-check=full --suppressions=root.supp --suppressions=${ROOTSYS}/etc/valgrind-root.supp --suppressions=newSuppressions.supp --suppressions=oracleDB.supp --suppressions=valgrindRTT.supp --suppressions=Gaudi.supp --suppressions=valgrind-python.supp --supressions=pythonJobO.supp --supressions=reflexPyROOT.supp --num-callers=30 --track-origins=yes `which python` `which athena.py` rec.pkl >& valgrind.esdtoaod.${mydesc}.log
+valgrind --tool=memcheck --leak-check=full --suppressions=root.supp --suppressions=${ROOTSYS}/etc/valgrind-root.supp --suppressions=newSuppressions.supp --suppressions=oracleDB.supp --suppressions=valgrindRTT.supp --suppressions=Gaudi.supp --suppressions=valgrind-python.supp --suppressions=pythonJobO.supp --suppressions=reflexPyROOT.supp --num-callers=30 --track-origins=yes `which python` `which athena.py` rec.pkl >& valgrind.esdtoaod.${mydesc}.log
 
 gzip valgrind.esdtoaod.${mydesc}.log
