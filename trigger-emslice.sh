@@ -84,5 +84,5 @@ valgrind --leak-check=full --trace-children=yes --num-callers=30 \
     --suppressions=/afs/cern.ch/user/k/krasznaa/public/valgrind/valgrindRTT.supp \
     --suppressions=/afs/cern.ch/user/k/krasznaa/public/valgrind/pythonJobO.supp \
     --suppressions=/afs/cern.ch/user/k/krasznaa/public/valgrind/reflexPyROOT.supp \
-    --error-limit=no `which athena.py`  -c 'EvtMax=$events;enableCostMonitoring = False; RunningRTT=TRUE;menu="MC_pp_v5_tight_mc_prescale"; sliceName="egamma";jp.Rec.OutputLevel=WARNING;LVL1OutputLevel=WARNING;HLTOutputLevel=WARNING;dsName="/eos/atlas/atlascerngroupdisk/trig-daq/validation/test_data/valid1.117050.PowhegPythia_P2011C_ttbar.merge.HITS.e2658_s1967_s1964";fileRange=[32,32];--maxEvents=${events}' --stdcmalloc \
+    --error-limit=no `which athena.py`  -c 'from AthenaCommon.AthenaCommonFlags import athenaCommonFlags as acf; acf.EvtMax.set_Value_and_lock($events);enableCostMonitoring = False; RunningRTT=TRUE;menu="MC_pp_v5_tight_mc_prescale"; sliceName="egamma";jp.Rec.OutputLevel=WARNING;LVL1OutputLevel=WARNING;HLTOutputLevel=WARNING;dsName="/eos/atlas/atlascerngroupdisk/trig-daq/validation/test_data/valid1.117050.PowhegPythia_P2011C_ttbar.merge.HITS.e2658_s1967_s1964";fileRange=[32,32];--maxEvents=${events}' --stdcmalloc \
     valgrind.pkl 2>&1 | tee ../valgrind.$test.$mydesc.log
