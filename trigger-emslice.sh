@@ -28,7 +28,8 @@ for pkg in $packages
 do
   idx=`expr index $pkg "-"`
   pName=${pkg:0:$idx-1}
-  pushd $pName/cmt
+  loc=`find . -name $pName -print`
+  pushd $loc/cmt
   source setup.sh
   cmt broad make
   popd
