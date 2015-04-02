@@ -29,7 +29,9 @@ do
   idx=`expr index $pkg "-"`
   pName=${pkg:0:$idx-1}
   loc=`find . -name $pName -print`
-  pushd $loc/cmt
+  pushd $loc
+  cd cmt
+  ls
   source setup.sh
   cmt broad make
   popd
