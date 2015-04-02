@@ -9,6 +9,7 @@
 release=$1
 nightly=$2
 events=$3
+packages=$4
 
 mydate=`date +"%m-%d-%Y"`
 
@@ -17,6 +18,21 @@ mydesc=${release}.${nightly}.${mydate}.${events}
 # Setup the release
 export AtlasSetup=/afs/cern.ch/atlas/software/dist/AtlasSetup 
 source /afs/cern.ch/atlas/software/dist/AtlasSetup/scripts/asetup.sh ${release},${nightly},here,gcc48,64
+
+# If there are any packages we need to check out, then we need to do that now.
+for pkg in $packages
+do
+  pkgco.py $pkg
+done
+for pkg in $packages
+do
+  idx=`expr index $pkg "-"`
+  pName=${pkg:0:$idx-1}
+  pushd $pName/cmt
+  source setup.sh
+  cmt broad make
+  popd
+done
 
 # Get the trigger test setup. Do this only if the run hasn't been
 # done up to now.
