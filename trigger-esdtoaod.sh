@@ -4,15 +4,32 @@
 release=$1
 nightly=$2
 events=$3
+packages=$4
 
 mydate=`date +"%m-%d-%Y"`
 
 mydesc=${release}.${nightly}.${mydate}.${events}
 
 export AtlasSetup=/afs/cern.ch/atlas/software/dist/AtlasSetup
-ls -l /afs/cern.ch/atlas/software/dist/AtlasSetup/scripts/asetup.sh
-echo source /afs/cern.ch/atlas/software/dist/AtlasSetup/scripts/asetup.sh ${release},${nightly},here,gcc48,64
 source /afs/cern.ch/atlas/software/dist/AtlasSetup/scripts/asetup.sh ${release},${nightly},here,gcc48,64
+
+# If there are any packages we need to check out, then we need to do that now.
+for pkg in $packages
+do
+  pkgco.py $pkg
+done
+for pkg in $packages
+do
+  idx=`expr index $pkg "-"`
+  pName=${pkg:0:$idx-1}
+  loc=`find . -name $pName -print`
+  pushd $loc
+  cd cmt
+  ls
+  source setup.sh
+  cmt broad make
+  popd
+done
 
 # Get suppressions to try to clean up the valgrind file a little bit
 # From http://acode-browser.usatlas.bnl.gov/lxr/source/atlas/Tools/ValgrindRTTJobs/scripts/valgrind_trf.py
